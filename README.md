@@ -1,6 +1,13 @@
 # Anti-Duplicator
 
-[TODO. There will be project description]
+This script finds duplicate files in folder and subfolders.
+Duplicates are files with the same name and size.
+
+# How to use
+```commandline
+python duplicates.py <path_to_folder>
+```
+
 
 # Project Goals
 
