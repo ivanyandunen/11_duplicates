@@ -1,13 +1,23 @@
 # Anti-Duplicator
 
-This script finds duplicate files in folder and subfolders.
+This script finds duplicate files in folder, which specified
+by user, and subfolders.
 Duplicates are files with the same name and size.
 
 # How to use
+Python 3 has to be installed. 
+You might have to run python3 instead of python depending on system.
 ```commandline
 python duplicates.py <path_to_folder>
 ```
-
+Output example:
+```commandline
+The file:
+c:\Folder\fileexample1
+is duplicated by the file:
+c:\Folder\Folder1\fileexample1
+```
+There is no messages if nothing is found.
 
 # Project Goals
 
