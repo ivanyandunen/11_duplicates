@@ -12,7 +12,7 @@ python duplicates.py <path_to_folder>
 ```
 Output example:
 ```commandline
-Files are duplicated:
+File fileexample1 is duplicated:
 c:\Folder\fileexample1
 c:\Folder\Folder1\fileexample1
 --------------------------------
