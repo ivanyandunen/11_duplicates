@@ -1,38 +1,31 @@
 import os
 import sys
+from collections import defaultdict
 
 
-def print_duplicates(duplicate1, duplicate2):
-    print(
-        'The file:\n{}\nis duplicated by the file:\n{}'.format(
-            duplicate1,
-            duplicate2
-        ),
-        end='\n\n'
-    )
-
-
-def find_duplicates(path_to_folder):
-    folder_content = {}
-
+def get_all_files(path_to_folder):
+    folder_content = defaultdict(list)
     for path, dirs, filenames in os.walk(path_to_folder):
         for filename in filenames:
-            if (filename in folder_content) and (
-                    os.path.getsize(os.path.join(path, filename)) ==
-                    os.path.getsize(folder_content[filename])
-            ):
-                print_duplicates(
-                    os.path.join(path, filename),
-                    folder_content[filename]
-                )
+            filesize = os.path.getsize(os.path.join(path, filename))
+            folder_content[(filename, filesize)].append(
+                os.path.join(path, filename)
+            )
+    return folder_content
 
-            else:
-                folder_content[filename] = os.path.join(path, filename)
+
+def print_duplicates(folder_content):
+    for elem in folder_content:
+        if len(folder_content[elem]) > 1:
+            print('Files are duplicated: ')
+            print('\n'.join(folder_content[elem]))
+            print('--------------------------------')
 
 
 if __name__ == '__main__':
     try:
-        find_duplicates(sys.argv[1])
+        folder_content = get_all_files(sys.argv[1])
+        print_duplicates(folder_content)
     except IndexError:
         print(
             'Search path is not specified. '
